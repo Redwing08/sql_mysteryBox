@@ -15,8 +15,8 @@ BEGIN
 
     -- Compare provided password hash with stored password hash
     IF v_stored_password_hash = p_password_hash THEN
-        -- Successful login, return user details
-        SELECT 'Login successful' AS message, v_user_id AS user_id, v_member_level AS member_level;
+              -- Successful login, return all details of the user
+        SELECT * FROM users WHERE id = v_user_id;
     ELSE
         -- Incorrect password
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid username or password';
